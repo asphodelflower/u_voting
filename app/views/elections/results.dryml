@@ -1,0 +1,10 @@
+<def tag="result-page" attrs="sidebar, main">
+  <html>
+    <head>Election results</head>
+    <body>
+      <div class="side"><%= sidebar %></div>
+      <div class="main"><%= main %></div>
+    </body>
+  </html>
+</def>
+

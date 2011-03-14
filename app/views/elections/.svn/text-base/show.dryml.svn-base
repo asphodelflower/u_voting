@@ -1,0 +1,30 @@
+<page>
+	<:maincol>
+		<panel class="blue">
+			<h2>Election details</h2>
+			<section>
+				<object_table associations="owner"/> 
+			</section>
+		</panel>
+	</:maincol>
+	
+	<:sidecol>
+		<panel class="green">
+			<h2><%= link_to_function "Candidates", "Element.toggle('candidates')" %></h2>
+			<section id="candidates" >
+				<repeat obj="#this.candidates">
+					<object_link /><br/>
+				</repeat>
+			</section>
+		</panel>
+		<panel class="green">
+			<h2><%= link_to_function "Voters", "Element.toggle('voters')" %></h2>
+			<section id="voters">
+				<repeat obj="#this.voters">
+					<object_link /><br/>
+				</repeat>
+			</section>
+		</panel>
+	</:sidecol>
+
+</page>

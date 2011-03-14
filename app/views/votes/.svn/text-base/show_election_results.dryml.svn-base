@@ -1,0 +1,25 @@
+<panel class="blue">
+<h2><%= "Election results for: " + @election.title %></h2>
+<div id='results'>
+  <p>In this election, the total number of votes was: <%= @votes.count %>.</p>
+  <p><%= @no_shows %>% of the voters didn't vote.</p>
+  <p>The blank vote ratio was: <%= @blank_ratio %>%</p>
+  <% if @winner_candidate.nil? %>
+    <h3>There was no winner candidate.</h3>
+  <% else %>
+    <h3>The winner candidate was: <%= @winner_candidate.name %></h3>
+  <% end %>
+</div>
+</panel>
+
+<panel class="blue">
+<h2>EUUID List for: <%= @election.title %></h2><br/> 
+<div id="search_and_results">
+    <p>
+      <% @votes_list.each do |vote| %>
+        <%= vote[0] + " - " + vote[1] %><br/>
+      <% end %>
+    </p>
+</div>
+</panel>
+  

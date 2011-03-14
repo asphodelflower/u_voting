@@ -1,0 +1,57 @@
+<page title="Voting">
+
+	<:intro>
+		<h1>Voting</h1>
+	</:intro>
+	
+	<:maincol>
+	  <div class="centered">
+	    <%= image_tag "loader.gif", :id=>"wait_icon", :style=>"display:none" %>
+	  </div>	
+	  <div id="electionsarea">
+		<panel class="blue">
+		  <br/>
+		  <p>Please select an election from the blue panels on the right sidebar.</p>
+		  <br/>
+		</panel>
+	  </div>
+	</:maincol>
+	<:sidecol>
+	  <panel class="green">
+        <h2><%= link_to_function "Instructions", "Element.toggle('instructions')" %></h2>
+        <div id='instructions'>
+          <ul id="list">
+            <li>Choose the candidate you wish to vote and press the "Vote" button at the end of the page</li>
+		    <li>Don't select any candidate to cast a blank vote</li>
+		    <li><b>Once you send the vote vote you won't be able to change it!</b></li>
+		  </ul>
+		</div>
+    </panel>
+		<panel class="blue">
+		  <div id="unvoted">
+			  <h2><%= link_to_function "Elections you can vote", "Element.toggle('unvoted_elections')" %></h2>
+			  <div id="unvoted_elections">
+			    <ul id="list_unvoted">
+			      <% @unvoted_elections.each do |election| %>
+					    <li><%= link_to_remote election.title, :update => "electionsarea", :url => { :action => "show_election",  :id => election.id }, :loading => "Element.show('wait_icon')", :loaded => "Element.hide('wait_icon')" %></li>
+				    <% end %>
+				  </ul>
+				</div>
+			</div>
+		</panel>
+		<panel class="blue">
+		  <div id="voted">
+			  <h2><%= link_to_function "Elections you already voted", "Element.toggle('voted_elections')" %></h2>
+			  <div id="voted_elections">
+			    <ul id="list_voted">
+			    <% @voted_elections.each { |election| %>
+					     <li><%= link_to_remote election.title, :update => "electionsarea", :url => { :action => "show_election",  :id => election.id }, :loading => "Element.show('wait_icon')", :loaded => "Element.hide('wait_icon')" %></li>
+				      <% } %>
+				  </ul>
+				</div>
+			</div>
+		</panel>
+		
+	</:sidecol>
+
+</page>

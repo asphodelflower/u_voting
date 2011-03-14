@@ -1,0 +1,21 @@
+<!-- Global taglib - these tags are shared across all subsites -->
+
+<include src="rapid" plugin="hobo"/>
+
+<include src="taglibs/auto/rapid/cards"/>
+<include src="taglibs/auto/rapid/pages"/>
+<include src="taglibs/auto/rapid/forms"/>
+
+<set-theme name="clean"/>
+
+   <extend tag="main-nav">
+      <navigation class="main-nav" merge-attrs param="default">
+        <if test="&current_user.administrator?"><old-main-nav merge/></if>
+        <else>
+         <nav-item href="#{base_url}/">Home</nav-item>
+        <nav-item with="&Candidate"><ht key="candidate.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
+         <nav-item with="&Election"><ht key="election.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
+        </else>
+    </navigation>
+  </extend>
+

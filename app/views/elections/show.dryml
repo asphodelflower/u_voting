@@ -1,0 +1,26 @@
+<show-page>
+    <collection: replace>
+        <% i = 0 %>
+        <table-plus with="&@candidates.approved" fields="this, election, vote">
+          <empty-message:>No candidates match your criteria</empty-message:>
+            <vote-view:>
+            <if test="&current_user.is_voter?(@election)">
+              <if test="&@election.active?">
+                <%=link_to "Vote", :controller => "elections", :action => "cast", :id => @election.id, :candidate_id =>       @candidates.approved[i].id %>
+
+              </if>
+            </if>
+            <% i = i + 1 %>
+            </vote-view:>
+        </table-plus>
+         <repeat with="&@election.candidates.group_by(&:approved)">
+          <if test="&this_key == false">
+             <if test="&current_user.administrator?">
+               <h4>Unapproved:</h4>
+                <collection/>
+             </if>
+          </if>
+        </repeat>
+  </collection:>
+</show-page>
+

@@ -1,0 +1,5 @@
+You've been automatically registered in our OneVote election system, as part of an election setup procedure.
+
+You'll be contacted soon with more information about the election.
+
+Your access password is '<%= @password %>'. Please change it as soon as possible.

@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 42
+/svn/!svn/ver/165/trunk/app/views/notifier
+END
+election_vote.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/161/trunk/app/views/notifier/election_vote.rhtml
+END
+new_election_warning.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/161/trunk/app/views/notifier/new_election_warning.rhtml
+END
+reset_password.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/161/trunk/app/views/notifier/reset_password.rhtml
+END
+signup.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/!svn/ver/161/trunk/app/views/notifier/signup.rhtml
+END
+election_warning.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/165/trunk/app/views/notifier/election_warning.rhtml
+END
+election_end.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/161/trunk/app/views/notifier/election_end.rhtml
+END

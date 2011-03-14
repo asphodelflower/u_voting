@@ -1,0 +1,5 @@
+There's a new election '<%= @title %>' for which you're a registered voter.
+
+It will take place from <%= @begin %> to <%= @end %>.
+
+You can access the election by logging in to your account, clicking the voting link and selecting it from the list on the right.

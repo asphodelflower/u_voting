@@ -1,0 +1,27 @@
+<index-page>
+  <collection: replace>
+    <% i = 0 %>
+    <table-plus fields="this, faculty, active, results">
+       <prepend-header:>
+          <div class="filter">
+            Display by faculty: <filter-menu param-name="faculty" options="&Faculty.all"/>
+          </div>
+        </prepend-header:>
+        <empty-message:>No candidates match your criteria</empty-message:>
+        <results-view:>
+            <if test="&!@this[i].active?">
+              Link
+            </if>
+            <else>
+              Not avaliable
+            </else>
+          <% i = i + 1 %>
+          </results-view:>
+        </table-plus>
+      <if test="&current_user.administrator?">
+        Stats
+      </if>
+  </collection:>
+
+</index-page>
+

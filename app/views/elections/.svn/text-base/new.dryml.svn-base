@@ -1,0 +1,57 @@
+<page title="New #{human_type}">
+
+	<:intro>
+		<h1>New <human_type/></h1>
+	</:intro>
+	
+	<:main>
+	  	<error_panel object="election" />	  	
+	
+		<% form_for :election, @election, :url => { :action => "create" } do |f| %>
+			<panel class="green">
+				<h2>Election</h2>
+				
+				<table>
+					<tr>
+						<td><label for="election[title]">Title:</label></td>
+						<td><%= f.text_field :title, :size => 60 %></td>
+					</tr>
+					<tr>
+						<td><label for="election[start_date]">Start date:</label></td>
+						<td><%= f.date_select :start_date %></td>
+					</tr>
+					<tr>
+						<td><label for="election[end_date]">End date:</label></td>
+						<td><%= f.date_select :end_date %></td>
+					</tr>
+					<tr>
+						<td><label for="election[public]">Public?</label></td>
+						<td><%= f.check_box :public %></td>
+					</tr>
+					<tr>
+						<td>Owner</td>
+						<td><%= current_user.display_name %></td>
+					</tr>				
+				</table>
+			</panel>
+			
+			<panel class="blue">				
+				<h2>Candidates</h2>
+				<div id="candidates"></div>
+			    <input type="button" value="Add candidate" onClick="addCandidate();" />
+			</panel>
+	
+			<panel class="purple">
+				<h2>Voters</h2>
+				<%= text_area_tag 'voters', nil, :height => "15", :style => "width:98%" %><br/>
+				Email addresses, separated by comma or newline.
+			</panel>
+	
+			<panel class="red">
+				<h2>Confirm</h2>
+				<center><%= submit_tag 'Create election' %></center>
+			</panel>
+		<% end %>
+	</:main>
+
+</page>

@@ -1,0 +1,7 @@
+<% if @results.nil? %>
+  <% @results_list_form.each do |vote| %>
+    <%= vote[0] + " - " + vote[1] %><br/>
+  <% end %>
+<% else %>
+  <%= @results %>
+<% end %>

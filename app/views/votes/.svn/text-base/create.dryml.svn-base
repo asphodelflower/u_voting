@@ -1,0 +1,17 @@
+<page title="Voting">
+
+<:intro>
+	<h1>Voting</h1>
+</:intro>
+
+<:main>
+  <panel class="green">
+    <div class="centered">
+      <h2>Your vote was registered successfully</h2>
+      <br/><p>An email was sent with your Election vote's UUID: <%= @vote.uuid %></p>
+      <p>This EUUID allows you to verify the correctness of your vote when the final results are published.</p><br/>
+    </div>
+  </panel>
+</:main>
+
+</page>

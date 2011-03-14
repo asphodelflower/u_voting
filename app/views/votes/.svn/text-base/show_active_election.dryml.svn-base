@@ -1,0 +1,25 @@
+<% form_for :vote, @vote, :url => { :action => "create" } do |f| %>
+	<panel class="blue">
+	<h2>Candidates for: <%= @election.title %></h2>
+	</panel>
+	
+	<repeat obj="#@election.candidates">
+	  <panel class="blue">
+			  <div id="candidate">
+			    <h3><%= link_to_function h(this.name), "Element.toggle('"+@election.id.to_s + this.id.to_s+"')" %></h3>
+			    <p><%= break_lines(h this.description) %></p>
+				  <div class="centered">
+			      <input type="radio" id="vote_candidate_id" name="vote[candidate_id]" value="<%= this.id %>" />
+		      </div>
+		    </div>
+		</panel>
+	</repeat>
+	
+	<panel class="blue">
+	<h2>Confirm</h2>
+	<%= f.hidden_field :user_id, {:value => current_user.id}%>
+	<%= f.hidden_field :election_id, {:value => @election.id}%>
+	<p><center><%= submit_tag 'Vote', :onclick => "if (confirm('Are you sure you want to submit your vote?')) { var f = document.createElement('form'); this.parentNode.appendChild(f); f.method = 'POST'; f.action = create; f.submit(); };return false;"%></center></p>
+	</panel>
+	
+<% end %>

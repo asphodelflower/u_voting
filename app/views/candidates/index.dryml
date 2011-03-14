@@ -1,0 +1,24 @@
+<index-page>
+  <collection: replace>
+    <page-nav/>
+    <table-plus with="&Candidate.approved" fields="this, name, election, election.faculty">
+       <prepend-header:>
+          <div class="filter">
+            Display by faculty: <filter-menu param-name="election.faculty" options="&Faculty.all"/>
+          </div>
+        </prepend-header:>
+        <empty-message:>No candidates match your criteria</empty-message:>
+        </table-plus>
+      <page-nav/>
+         <repeat with="&Candidate.all.group_by(&:approved)">
+          <if test="&this_key == false">
+             <if test="&current_user.administrator?">
+               <h4>Unapproved:</h4>
+                <collection/>
+             </if>
+          </if>
+        </repeat>
+  </collection:>
+
+</index-page>
+

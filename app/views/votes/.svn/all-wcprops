@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 39
+/svn/!svn/ver/206/trunk/app/views/votes
+END
+search_uuid.dryml
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/!svn/ver/143/trunk/app/views/votes/search_uuid.dryml
+END
+show_active_election.dryml
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/195/trunk/app/views/votes/show_active_election.dryml
+END
+create.dryml
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/!svn/ver/167/trunk/app/views/votes/create.dryml
+END
+show_election_results.dryml
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/206/trunk/app/views/votes/show_election_results.dryml
+END
+index.dryml
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/!svn/ver/203/trunk/app/views/votes/index.dryml
+END
