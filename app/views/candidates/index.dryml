@@ -20,5 +20,10 @@
         </repeat>
   </collection:>
 
+  <count:>
+    <ht key="candidate.collection.count" count="&Candidate.approved.count">
+        <count summary/>
+    </ht>
+  </count:>
 </index-page>
 

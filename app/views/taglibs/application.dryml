@@ -10,12 +10,24 @@
 
    <extend tag="main-nav">
       <navigation class="main-nav" merge-attrs param="default">
-        <if test="&current_user.administrator?"><old-main-nav merge/></if>
+        <if test="&current_user.administrator?">
+             <old-main-nav merge/>
+        </if>
         <else>
          <nav-item href="#{base_url}/">Home</nav-item>
         <nav-item with="&Candidate"><ht key="candidate.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
          <nav-item with="&Election"><ht key="election.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
         </else>
     </navigation>
+  </extend>
+
+  <extend tag="form" for="User">
+     <old-form merge>
+         <error-messages param/>
+         <field-list fields="name, email_address, password, password_confirmation, administrator, state" param/>
+        <div param="actions">
+      <submit label="#{ht 'user.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
+    </div>
+     </old-form>
   </extend>
 

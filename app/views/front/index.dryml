@@ -6,9 +6,12 @@
     <header class="content-header">
       <h1>Welcome to <app-name/></h1>
       <section class="welcome-message">
-        <h3>Congratulations! Your Hobo Rails App is up and running</h3>
+        <h3>Welcome to Online University Voting System!</h3>
+        <h4>After authorization you can:</h4>
         <ul>
-          <li>To customise this page: edit app/views/front/index.dryml</li>
+          <li>View all avaliable elections</li>
+          <li>Participate in elections of your faculty</li>
+          <li>Apply for candidate</li>
         </ul>
 
         <% if User.count == 0 -%>

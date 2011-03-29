@@ -25,6 +25,34 @@ class User < ActiveRecord::Base
     end
   end
 
+    def validate_on_create
+        if !check_name?(name)
+            errors.add_to_base "Username is incorrect"
+        end
+
+    end
+
+  def check_name? (name)
+    in_faculty = false
+    faculties = Faculty.all
+    faculties.each do |faculty|
+      if faculty.num.to_s() == name[3]
+        in_faculty = true
+        break
+      end
+    end
+
+    if (!numeric?(name) || name.size != 7)
+      false
+    else
+      true
+    end
+  end
+
+  def numeric?(object)
+    true if Integer(object) rescue false
+  end
+
 
   # --- Signup lifecycle --- #
 
@@ -32,9 +60,9 @@ class User < ActiveRecord::Base
 
     state :active, :default => true
 
-    create :signup, :available_to => "Guest",
-           :params => [:name, :email_address, :password, :password_confirmation],
-           :become => :active
+    # create :signup, :available_to => "Guest",
+    #       :params => [:name, :email_address, :password, :password_confirmation],
+    #       :become => :active
 
     transition :request_password_reset, { :active => :active }, :new_key => true do
       UserMailer.forgot_password(self, lifecycle.key).deliver
@@ -49,7 +77,8 @@ class User < ActiveRecord::Base
 
   def create_permitted?
     # Only the initial admin user can be created
-    self.class.count == 0
+    # self.class.count == 0
+    acting_user.administrator?
   end
 
   def update_permitted?
@@ -119,7 +148,7 @@ class User < ActiveRecord::Base
     users = ::User.all
     voters = Array.new
     for user in users
-      if user.name[2..4] == faculty_id
+      if user.name[3] == faculty_id.to_s()
         voters << user
       end
     end

@@ -31,6 +31,9 @@ class Election < ActiveRecord::Base
     if end_date < start_date
       errors.add_to_base "End date must be later than start date"
     end
+    if title.empty?
+      errors.add_to_base "Election title can't be empty"
+    end
   end
 
   # --- Permissions --- #
@@ -40,11 +43,11 @@ class Election < ActiveRecord::Base
   end
 
   def update_permitted?
-    acting_user.administrator?
+    acting_user.administrator? || (owner_is?(acting_user) && !owner_changed?)
   end
 
   def destroy_permitted?
-    acting_user.administrator?
+    acting_user.administrator? || owner_is?(acting_user)
   end
 
   def view_permitted?(field)
@@ -72,13 +75,13 @@ class Election < ActiveRecord::Base
   end
 
   def start_if_time
-    if !active && !expired && start_date <= Date.today
+    if !active && !expired && start_date >= Date.today
       start
     end
   end
 
   def close_if_time
-    if active && end_date == Date.today
+    if active && end_date <= Date.today
       close
     end
   end

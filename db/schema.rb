@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110314184414) do
+ActiveRecord::Schema.define(:version => 20110328194213) do
 
   create_table "ballots", :force => true do |t|
     t.boolean  "cast",        :default => false
@@ -55,9 +55,10 @@ ActiveRecord::Schema.define(:version => 20110314184414) do
   add_index "elections", ["user_id"], :name => "index_elections_on_user_id"
 
   create_table "faculties", :force => true do |t|
-    t.string   "name",       :limit => 3, :null => false
+    t.string   "name",                      :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "num",        :default => 0
   end
 
   create_table "users", :force => true do |t|

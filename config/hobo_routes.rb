@@ -29,8 +29,6 @@ Evoting::Application.routes.draw do
 
 
   # Lifecycle routes for controller "users"
-  post 'users/signup(.:format)' => 'users#do_signup', :as => 'do_user_signup'
-  get 'users/signup(.:format)' => 'users#signup', :as => 'user_signup'
   put 'users/:id/reset_password(.:format)' => 'users#do_reset_password', :as => 'do_user_reset_password'
   get 'users/:id/reset_password(.:format)' => 'users#reset_password', :as => 'user_reset_password'
 

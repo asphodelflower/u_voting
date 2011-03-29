@@ -3,7 +3,8 @@ class Faculty < ActiveRecord::Base
   hobo_model # Don't put anything above this
 
   fields do
-    name      :string, :unique => true, :null => false, :limit => 3
+    name :string, :unique => true, :null => false
+    num :integer, :default => 0
     timestamps
   end
 

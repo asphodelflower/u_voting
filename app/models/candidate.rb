@@ -19,25 +19,25 @@ class Candidate < ActiveRecord::Base
 
   has_many :votes, :dependent => :destroy
   belongs_to :owner, :class_name => "User", :creator => true
-  belongs_to :election, :counter_cache => :candidates_count
+  belongs_to :election
 
   # --- Permissions --- #
 
   def create_permitted?
-    owner_is? acting_user
+    owner_is?(acting_user) && !acting_user.administrator? && election.faculty.num.to_s() == acting_user.name[3]&& !election.expired?
   end
 
   def update_permitted?
-    acting_user.administrator? || (owner_is?(acting_user) && !owner_changed?)
+    (acting_user.administrator? || election.owner_is?(acting_user) || owner_is?(acting_user)) && !owner_changed?
   end
 
   def destroy_permitted?
-    acting_user.administrator? || owner_is?(acting_user)
+    acting_user.administrator? || owner_is?(acting_user) || election.owner_is?(acting_user)
   end
 
   def view_permitted?(field)
     if field == :approved && approved == false
-      acting_user.administrator?
+      acting_user.administrator? || election.owner_is?(acting_user)
     else
       true
     end

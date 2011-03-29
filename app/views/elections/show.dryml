@@ -15,7 +15,7 @@
         </table-plus>
          <repeat with="&@election.candidates.group_by(&:approved)">
           <if test="&this_key == false">
-             <if test="&current_user.administrator?">
+             <if test="&current_user.administrator? || @election.owner_is?(current_user)">
                <h4>Unapproved:</h4>
                 <collection/>
              </if>

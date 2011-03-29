@@ -5,17 +5,29 @@ class ElectionsController < ApplicationController
 
     # Creates a new election, receiving voter and candidate lists
   def create
-
     # Create election from parameters
     @election = Election.new(params[:election])
-    @election.owner = current_user
+    user_id = params[:election][:user_id]
+    if user_id == ""
+      flash[:error] = "You may choose owner for election"
+      redirect_back_or_default(:action => 'new')
+    return
+    end
+    @election.owner = ::User.find(user_id)#current_user
 
     faculty_id = params[:election][:faculty_id]
-    faculty_name = Faculty.find(@election.faculty_id).name
+    # validate
+    if faculty_id == ""
+      flash[:error] = "You may choose faculty for election"
+      redirect_back_or_default(:action => 'new')
+      return
+    end
+
+    faculty_num = Faculty.find(@election.faculty_id).num
 
     # Get votes by faculty
     voters = Array.new
-    voters = ::User.find_users_by_faculty(faculty_name)
+    voters = ::User.find_users_by_faculty(faculty_num)
 
     # Validates existence of voters
     if voters.empty?
@@ -41,10 +53,6 @@ class ElectionsController < ApplicationController
       render :action => :new and return
     end
 
-    # If everything went ok, notify the voters
-    #for voter in voters
-    #  Notifier.deliver_election_warning(voter,@election)
-    #end
     flash[:notice] = "Election created successfully"
     redirect_to(object_url(@election))
   end
@@ -61,6 +69,15 @@ class ElectionsController < ApplicationController
     @candidates =
       @election.candidates.apply_scopes(:search    => [params[:search], :name],
                                     :order_by  => parse_sort_param(:name))
+  end
+
+  def update
+    if params[:election][:expired] == params[:election][:active]
+      flash[:error] = "Election can't be active and expired at the same time"
+      redirect_back_or_default(:action => 'edit')
+      return
+    end
+    hobo_update
   end
 
   def cast
