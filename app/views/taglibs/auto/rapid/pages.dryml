@@ -83,7 +83,6 @@
 
     <content: param>
           <header param="content-header">
-            <a:election param="parent-link">&laquo; <ht key="candidate.actions.back_to_parent" parent="Election" name="&this">Back to <name/></ht></a:election>
             <h2 param="heading">
               <ht key="candidate.show.heading" name="&this.respond_to?(:name) ? this.name : ''">
                 <name/>
@@ -103,6 +102,7 @@
 
           <section param="content-body">
             <view:description param="description"/>
+            <field-list fields="election" param/>
           </section>
     </content:>
 
